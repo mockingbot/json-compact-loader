@@ -18,8 +18,7 @@ Replace big named export value to 'JSON.parse(...)'
 [//]: # (NON_PACKAGE_CONTENT)
 
 - 📁 [source/](source/)
-  - main source code, in output package will be: `json-compact-loader/library`- 📄 [SPEC.md](SPEC.md)
-  - list of all directly accessible codes, sort of API lockfile
+  - main source code, in output package will be: `json-compact-loader/library`
 
 
 ## Why a special JSON loader

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "json-compact-loader",
-  "version": "0.1.0-dev.0",
+  "version": "0.1.0-dev.1",
   "description": "Replace big named export value to 'JSON.parse(...)'",
   "author": "mockingbot",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "@babel/parser": "^7",
     "@babel/plugin-transform-modules-commonjs": "^7",
     "@babel/register": "^7",
-    "@dr-js/core": "0.4.1-dev.5"
+    "@dr-js/core": "^0.4.1 || ^0.4.1-dev.5"
   },
   "devDependencies": {
     "@dr-js/dev": "0.4.1-dev.1",

@@ -84,9 +84,9 @@ const toJSString = (value, valueJSONString = JSON.stringify(value)) => {
 }
 
 const JSONCompactLoader = async function (sourceString) {
-  const { query: options = { babelConfig: null, useConst: false } } = this // https://webpack.js.org/api/loaders/#thisquery
+  let { query: options } = this // https://webpack.js.org/api/loaders/#thisquery
+  if (!options) options = { babelConfig: null, useConst: false } // may get empty string, check: https://github.com/webpack/loader-utils/blob/v2.0.0/lib/getOptions.js#L8
   if (!isBasicObject(options)) throw new Error(`[JSONCompactLoader] only JSON option supported, got: ${String(options)}`) // https://github.com/webpack/loader-utils/blob/v2.0.0/lib/getOptions.js#L12-L15
-  // configureOnce(options)
 
   const callback = this.async()
   try {
