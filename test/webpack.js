@@ -16,8 +16,8 @@ runMain(async (logger) => {
 
   const config = getCommonWebpackConfig({
     babelOption: null, // do not use default
-    output: { path: fromOutput(), filename: '[name].js' },
-    entry: { 'entry': fromRoot('entry') },
+    output: { path: fromOutput(), filename: '[name].js', libraryTarget: 'commonjs2' },
+    entry: { 'index': fromRoot('index') },
     extraModuleRuleList: [
       { test: /\.js$/, exclude: /\.@json\.js$/, use: { loader: 'babel-loader', options: babelOption } },
       { test: /\.@json\.js$/, use: { loader: resolve(__dirname, '../output-gitignore/library/index.js'), options: { useConst: true } } }

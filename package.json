@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "json-compact-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Replace big named export value to 'JSON.parse(...)'",
   "author": "mockingbot",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "build-library": "babel ./source --out-dir ./output-gitignore/library --ignore source/browser/",
     "build-library-dev": "dr-dev --EE BABEL_ENV=dev -E -- npm run build-library -- --watch",
     "// test ========================": "",
+    "test-verify": "node -r @babel/register ./script/testVerify",
     "test-webpack": "node -r @babel/register ./test/webpack production",
     "test-webpack-watch": "node -r @babel/register ./test/webpack production watch",
     "// =============================": "",

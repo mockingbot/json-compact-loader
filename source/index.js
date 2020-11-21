@@ -8,7 +8,7 @@ const DEFAULT_BABEL_CONFIG = {
   configFile: false, babelrc: false,
   plugins: [ [ '@babel/plugin-transform-modules-commonjs' ] ] // NOTE: change this to `@babel/preset-env` if more complex js is used
 }
-const cleanBabelRequire = async (babelConfig, filePath) => {
+const cleanBabelRequire = async (babelConfig, filePath, exportName) => {
   // NOTE: webpack loader share the global, to avoid global pollution,
   //   the require is run in another node process,
   //   the good thing is the require cache is clean every time
@@ -16,8 +16,8 @@ const cleanBabelRequire = async (babelConfig, filePath) => {
     quiet: true,
     command: process.execPath, // node
     argList: [ '--eval', [
-      `require('@babel/register')(${JSON.stringify(babelConfig || DEFAULT_BABEL_CONFIG)});`,
-      `const data = require(${JSON.stringify(filePath)})`,
+      `require('@babel/register')(${JSON.stringify(babelConfig || DEFAULT_BABEL_CONFIG)})`,
+      `const data = require(${JSON.stringify(filePath)})[ ${JSON.stringify(exportName)} ]`,
       'process.stdout.write(JSON.stringify(data))' // use this instead of `console.log` to prevent tailing `\n`
     ].join(';') ]
   })
@@ -103,7 +103,7 @@ const JSONCompactLoader = async function (sourceString) {
     importFileSet.forEach((importFile) => this.addDependency(importFile))
 
     // run with sandbox-ed require
-    const valueJSONString = await cleanBabelRequire(options.babelConfig, this.resourcePath)
+    const valueJSONString = await cleanBabelRequire(options.babelConfig, this.resourcePath, exportName)
     // console.log('[JSONCompactLoader]', { valueJSONString })
 
     // output compact
