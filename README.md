@@ -18,7 +18,9 @@ Replace big named export value to 'JSON.parse(...)'
 [//]: # (NON_PACKAGE_CONTENT)
 
 - 📁 [source/](source/)
-  - main source code, in output package will be: `json-compact-loader/library`
+  - source code, in output package will be: `json-compact-loader/library`
+- 📁 [test/](test/)
+  - basic test with webpack, run with `npm run test-webpack` or `npm run test-webpack-watch`
 
 
 ## Why a special JSON loader
@@ -47,16 +49,17 @@ This loader should support webpack v5 and v4 with nodejs 12+.
 Sad, but there's some limit to what the code can do:
 - the file naming should be `NAME_OF_JSON.@json.js`,
   and the `NAME_OF_JSON` should be basic `/[\w-]+/`,
-  to also usable as variable name
+  to also be usable as variable name
 - the file can only have single named export, should be `NAME_OF_JSON`,
-  or the file should end with `export { NAME_OF_JSON }`
+  or simply file should just end with `export { NAME_OF_JSON }`
 - data generation with code is supported,
   but only further `import` of `.js/json` is allowed, no `require` for now,
   this is because webpack need to know the related file,
   but `require` is hard to parse correctly
 
-That's it, note the `.@json.js` is recommended, but not required,
-  change it to something else if really needed.
+That's it,
+  note the `.@json.js` suffix is recommended, but not required,
+  change it to something else if needed.
 
 
 ## How to use
@@ -99,4 +102,5 @@ The configurable option:
 }
 ```
 
-There's a test setup can be used as example: [./test/](./test/)
+There's a [test](./test/) setup can be used as example,
+  and the source code is rather simple, too.

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "json-compact-loader",
-  "version": "0.1.0-dev.1",
+  "version": "0.1.0",
   "description": "Replace big named export value to 'JSON.parse(...)'",
   "author": "mockingbot",
   "license": "MIT",
